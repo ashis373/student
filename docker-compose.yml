@@ -1,6 +1,6 @@
 services:
   app:
-    build: .
+    image: ashis373/student-app:latest
     ports:
       - "8080:80"
     environment:
