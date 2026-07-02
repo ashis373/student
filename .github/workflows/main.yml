@@ -1,0 +1,26 @@
+name: My First Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Show Files
+        run: ls -la
+
+      - name: Show Current Directory
+        run: pwd
+
+      - name: Docker Version
+        run: docker --version
+
+      - name: Docker Compose Version
+        run: docker compose version
