@@ -12,64 +12,60 @@ $method = $_SERVER['REQUEST_METHOD'];
 
 // GET students
 
-if($method=="GET"){
+if ($method == "GET") {
 
-$result = $conn->query(
-"SELECT * FROM students ORDER BY id DESC"
-);
-
-
-$data=[];
-
-while($row=$result->fetch_assoc()){
-    $data[]=$row;
-}
+    $result = $conn->query(
+        "SELECT * FROM students ORDER BY id DESC"
+    );
 
 
-echo json_encode($data);
+    $data = [];
+    
 
+    while ($row = $result->fetch_assoc()) {
+        $data[] = $row;
+    }
+
+
+    echo json_encode($data);
 }
 
 
 
 // POST student
 
-if($method=="POST"){
+if ($method == "POST") {
 
 
-$input=json_decode(
-file_get_contents("php://input"),
-true
-);
+    $input = json_decode(
+        file_get_contents("php://input"),
+        true
+    );
 
 
-$name=$input['student_name'];
-$roll=$input['roll_no'];
-$class=$input['class_name'];
+    $name = $input['student_name'];
+    $roll = $input['roll_no'];
+    $class = $input['class_name'];
 
 
-$sql=$conn->prepare(
-"INSERT INTO students(student_name,roll_no,class_name)
+    $sql = $conn->prepare(
+        "INSERT INTO students(student_name,roll_no,class_name)
 VALUES(?,?,?)"
-);
+    );
 
 
-$sql->bind_param(
-"sss",
-$name,
-$roll,
-$class
-);
+    $sql->bind_param(
+        "sss",
+        $name,
+        $roll,
+        $class
+    );
 
 
-$sql->execute();
+    $sql->execute();
 
 
-echo json_encode([
-"message"=>"Student Added"
-]);
-
+    echo json_encode([
+        "message" => "Student Added"
+    ]);
 }
-
-
-?>

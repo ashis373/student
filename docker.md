@@ -1,8 +1,15 @@
 # Docker Learning Notes
+docker compose up --build
+##for databse
+mysql -u root -p
 
+
+## php Api
+http://localhost:8080/api/student.php
 ## What is Docker?
 
 Docker is a tool used to package an application with everything it needs:
+
 - Code
 - Runtime
 - Libraries
@@ -80,7 +87,6 @@ Meaning:
 
 - `-t` gives image name
 - `.` current folder Dockerfile
-
 
 ---
 
@@ -252,7 +258,6 @@ This will:
 3. Create containers
 4. Start services
 
-
 ---
 
 ## Stop Project
@@ -301,16 +306,15 @@ CMD ["apache2-foreground"]
 
 ```yaml
 services:
+  db:
+    image: mysql:8
 
- db:
-   image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: docker
 
-   environment:
-     MYSQL_ROOT_PASSWORD: root
-     MYSQL_DATABASE: docker
-
-   ports:
-     - "3306:3306"
+    ports:
+      - '3306:3306'
 ```
 
 ---

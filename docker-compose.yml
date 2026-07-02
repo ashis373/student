@@ -1,10 +1,8 @@
-version: '3.8'
-
 services:
   app:
     build: .
     ports:
-      - "8080:80"
+      - '8080:80'
     environment:
       - DB_HOST=db
       - DB_USER=root
@@ -16,12 +14,13 @@ services:
   db:
     image: mysql:8.0
     ports:
-      - "3307:3306"
+      - '3307:3306'
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=docker
     volumes:
       - db_data:/var/lib/mysql
+      - ./api/init.sql:/docker-entrypoint-initdb.d/init.sql
 
 volumes:
   db_data:

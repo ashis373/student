@@ -1,17 +1,26 @@
-CREATE DATABASE IF NOT EXISTS docker;
+services:
+  app:
+    build: .
+    ports:
+      - "8080:80"
+    environment:
+      - DB_HOST=db
+      - DB_USER=root
+      - DB_PASS=root
+      - DB_NAME=docker
+    depends_on:
+      - db
 
-USE docker;
+  db:
+    image: mysql:8.0
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: docker
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./api/init.sql:/docker-entrypoint-initdb.d/init.sql
 
-
-CREATE TABLE students(
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    student_name VARCHAR(100),
-    roll_no VARCHAR(50),
-    class_name VARCHAR(50)
-);
-
-
-INSERT INTO students
-(student_name,roll_no,class_name)
-VALUES
-('Test Student','1','10');
+volumes:
+  db_data:
