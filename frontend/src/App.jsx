@@ -112,7 +112,7 @@ function StudentList() {
             <div className="name">{s.student_name}</div>
             <div className="details">
               <span>
-                <strong>Roll:</strong> {s.roll_no}
+                <strong>Rolls:</strong> {s.roll_no}
               </span>
               <span>
                 <strong>Class:</strong> {s.class_name}
