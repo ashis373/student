@@ -22,9 +22,17 @@ jobs:
           username: ashis373
           password: ${{ secrets.DOCKER_TOKEN }}
 
-      - name: Build and Push Docker Image
+      - name: Build and Push App Image
         uses: docker/build-push-action@v6
         with:
           context: .
           push: true
           tags: ashis373/student-app:latest
+
+      - name: Build and Push DB Image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: Dockerfile.db
+          push: true
+          tags: ashis373/student-db:latest

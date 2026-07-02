@@ -1,0 +1,4 @@
+FROM mysql:8.0
+
+# Copy the initialization script directly into the image
+COPY api/init.sql /docker-entrypoint-initdb.d/init.sql
