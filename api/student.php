@@ -20,7 +20,7 @@ if ($method == "GET") {
 
 
     $data = [];
-    
+
 
     while ($row = $result->fetch_assoc()) {
         $data[] = $row;

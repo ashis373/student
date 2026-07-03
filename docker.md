@@ -2,8 +2,11 @@
 docker compose up --build
 ##for databse
 mysql -u root -p
+# remove all conter and stop 
+docker compose down 
 
-
+# run the docker-composer.yml build all mising  contenir and run it
+docker compose up -d
 ## php Api
 http://localhost:8080/api/student.php
 ## What is Docker?
